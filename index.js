@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/:address', async (request, response) => {
-    let result = null;
+    let result = {};
     var options = {
         method: 'GET',
         url: `https://ipinfo.io/widget/${request.params.address}`,
