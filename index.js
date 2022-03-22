@@ -6,7 +6,10 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', async (request, response) => {
-    const ip = request.connection?.remoteAddress || request.socket?.remoteAddress || request.headers['x-forwarded-for'] || null;
+    const getIP = request.connection?.remoteAddress || request.socket?.remoteAddress || request.headers['x-forwarded-for'] || null;
+    const expression = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/;
+    const ip = getIP.match(expression)[0]
+    
     let result = {};
     var options = {
         method: 'GET',
